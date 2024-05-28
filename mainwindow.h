@@ -2,7 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "Login.h"
+//#include "Login.h"
+#include <map>
+#include <string.h>
+
+using namespace std;
 
 
 QT_BEGIN_NAMESPACE
@@ -20,12 +24,22 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_clicked();
-
     void on_Play_clicked();
+
+    void on_create_clicked();
+
+    void on_login_clicked();
 
 private:
     Ui::MainWindow *ui;
-    Login *login;
+    void esconderPrinicial();
+    void mostrarPrincipal();
+    void mostrarLogin();
+    void EsconderLogin();
+    map<string,string> cuentas;
+    map<string, string> *leerDatosDesdeArchivo(const string& nombreArchivo);
+    void mostrarDatos(const map<string, string> &datos);
+    bool verificarCredenciales(const string& usuario, const string& contrasena);
+    bool existe(const string& usuario);
 };
 #endif // MAINWINDOW_H
