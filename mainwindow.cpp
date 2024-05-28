@@ -119,8 +119,11 @@ void MainWindow::on_login_clicked()
 {
     string usr = ui->lineEditUser->text().toStdString();
     string pass = ui->lineEditPass->text().toStdString();
-    if(verificarCredenciales(usr,pass)){
-        //cargar el juego
+    map<string, string>::iterator it = verificarCredenciales(usr,pass);
+
+    if(it == cuentas.end()){
+        Bando bando(this);
+        bando.exec();
     }else{
         QMessageBox::critical(this, "Error", "Usuario o contrasena invalidos.");
     }
@@ -164,13 +167,13 @@ void MainWindow::mostrarDatos(const std::map<string, string> &datos) {
 
 
 
-bool MainWindow::verificarCredenciales(const string& usuario, const string& contrasena) {
+map<string, string>::iterator MainWindow::verificarCredenciales(const string& usuario, const string& contrasena) {
 
     map<string, string>::iterator it = cuentas.find(usuario);
     if (it == cuentas.end()) {
-        return false;
+        return cuentas.end();
     }
-    return it->second == contrasena;
+    return it;
 }
 
 
