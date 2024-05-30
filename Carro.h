@@ -12,10 +12,21 @@ public:
     Carro(QGraphicsItem *parent = nullptr);
 
 protected:
-    void keyPressEvent(QKeyEvent *event) override;
+    void keyPressEvent(QKeyEvent *event);
+    void keyReleaseEvent(QKeyEvent *event);
 
 private:
-    void verificarColisiones();
+    bool verificarColisiones();
+    bool rotating;
+    void rotarCarro();
+    bool moving;
+    QTimer *rotationTimer;
+    QTimer *moveTimer;
+
+
+private slots:
+    void rotate();
+    void move();
 };
 
 #endif // CUERPO_H

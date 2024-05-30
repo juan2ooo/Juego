@@ -6,6 +6,7 @@
 
 MapaVias::MapaVias(QWidget *parent) : QWidget(parent)
 {
+    short dif = 20;
     short alto = 800, ancho = 600;
     scene = new QGraphicsScene(this);
     scene->setSceneRect(0, 0, ancho, alto);
@@ -22,27 +23,27 @@ MapaVias::MapaVias(QWidget *parent) : QWidget(parent)
 
 
     // Segmentos iniciales
-    dibujarRecta(QPoint(0, 50), QPoint(300, 50));  // Primera línea horizontal
-    dibujarRecta(QPoint(0, 100), QPoint(250, 100));  // Segunda línea horizontal
+    dibujarRecta(QPoint(0, 50), QPoint(300+dif, 50));  // Primera línea horizontal
+    dibujarRecta(QPoint(0, 100+dif), QPoint(250, 100+dif));  // Segunda línea horizontal
 
-    dibujarRecta(QPoint(300, 50), QPoint(300, 150));  // Primera línea vertical desde el final de la primera línea horizontal
-    dibujarRecta(QPoint(250, 100), QPoint(250, 200));  // Segunda línea vertical desde el final de la segunda línea horizontal
+    dibujarRecta(QPoint(300+dif, 50), QPoint(300+dif, 150));  // Primera línea vertical desde el final de la primera línea horizontal
+    dibujarRecta(QPoint(250, 100+dif), QPoint(250, 200+dif));  // Segunda línea vertical desde el final de la segunda línea horizontal
 
-    dibujarRecta(QPoint(300, 150), QPoint(400, 150));  // Tercera línea horizontal desde el final de la primera línea vertical
-    dibujarRecta(QPoint(250, 200), QPoint(350, 200));  // Cuarta línea horizontal desde el final de la segunda línea vertical
+    dibujarRecta(QPoint(300+dif, 150), QPoint(400+dif, 150));  // Tercera línea horizontal desde el final de la primera línea vertical
+    dibujarRecta(QPoint(250, 200+dif), QPoint(350, 200+dif));  // Cuarta línea horizontal desde el final de la segunda línea vertical
 
-    dibujarRecta(QPoint(400, 150), QPoint(400, 250));  // Segunda línea vertical desde el final de la tercera línea horizontal
-    dibujarRecta(QPoint(350, 200), QPoint(350, 300));  // Segunda línea vertical desde el final de la cuarta línea horizontal
+    dibujarRecta(QPoint(400+dif, 150), QPoint(400+dif, 250));  // Segunda línea vertical desde el final de la tercera línea horizontal
+    dibujarRecta(QPoint(350, 200+dif), QPoint(350, 300));  // Segunda línea vertical desde el final de la cuarta línea horizontal
 
     // Continuación
-    dibujarRecta(QPoint(400, 250), QPoint(500, 250));  // Quinta línea horizontal desde el final de la segunda línea vertical
+    dibujarRecta(QPoint(400+dif, 250), QPoint(500, 250));  // Quinta línea horizontal desde el final de la segunda línea vertical
     dibujarRecta(QPoint(350, 300), QPoint(450, 300));  // Sexta línea horizontal desde el final de la segunda línea vertical
 
     dibujarRecta(QPoint(500, 250), QPoint(500, 350));  // Tercera línea vertical desde el final de la quinta línea horizontal
-    dibujarRecta(QPoint(450, 300), QPoint(450, 400));  // Cuarta línea vertical desde el final de la sexta línea horizontal
+    dibujarRecta(QPoint(450, 300), QPoint(450, 400+dif));  // Cuarta línea vertical desde el final de la sexta línea horizontal
 
     dibujarRecta(QPoint(500, 350), QPoint(580, 350));  // Séptima línea horizontal desde el final de la tercera línea vertical
-    dibujarRecta(QPoint(450, 400), QPoint(550, 400));  // Octava línea horizontal desde el final de la cuarta línea vertical
+    dibujarRecta(QPoint(450, 400+dif), QPoint(550, 400+dif));  // Octava línea horizontal desde el final de la cuarta línea vertical
 
     dibujarRecta(QPoint(580, 350), QPoint(580, 540));  // Quinta línea vertical desde el final de la séptima línea horizontal
     dibujarRecta(QPoint(550, 400), QPoint(550, 500));  // Sexta línea vertical desde el final de la octava línea horizontal
