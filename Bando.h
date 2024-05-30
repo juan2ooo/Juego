@@ -18,6 +18,7 @@ signals:
 private slots:
     void opcionFuerzasEje();
     void opcionAliados();
+    //void abrirJuegoAliados();
 };
 
 #endif
