@@ -12,8 +12,8 @@ public:
     Carro(QGraphicsItem *parent = nullptr);
 
 protected:
-    void keyPressEvent(QKeyEvent *event);
-    void keyReleaseEvent(QKeyEvent *event);
+    void keyPressEvent(QKeyEvent *event) override;
+    void keyReleaseEvent(QKeyEvent *event)override;
 
 private:
     bool verificarColisiones();
