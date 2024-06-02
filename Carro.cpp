@@ -6,13 +6,14 @@
 #include <QTimer>
 
 Carro::Carro(QGraphicsItem *parent) : QGraphicsPixmapItem(parent) {
+    //setRotation(90);
     setPixmap(QPixmap("C:/Users/juan/Documents/JuegoProyecto/Imagenes/Carro.png")); // Reemplaza "car.png" con la ruta de tu imagen de carro
     setTransformOriginPoint(pixmap().width() / 2, pixmap().height() / 2);
-    setRotation(0);
     rotationTimer = new QTimer(this);
     connect(rotationTimer, SIGNAL(timeout()), this, SLOT(rotate()));
     rotationTimer->start(100); // Cambia el valor para ajustar la velocidad de rotación
     moving = false;
+    setPos(0,140);
 
     moveTimer = new QTimer(this);
     connect(moveTimer, SIGNAL(timeout()), this, SLOT(move()));
@@ -59,17 +60,4 @@ void Carro::move() {
 }
 
 
-bool Carro::verificarColisiones()
-{
-    // Verifica colisiones con otros elementos
-    QList<QGraphicsItem *> colisiones = collidingItems();
-    for (QGraphicsItem *item : colisiones) {
-        if (QGraphicsLineItem *linea = qgraphicsitem_cast<QGraphicsLineItem *>(item)) {
-            // Colisión detectada con una línea, manejarla aquí
-            qDebug() << "Colisión detectada con una línea";
-            //setPos(x()-10,y()-10);
-            return true;
-        }
-    }
-    return false;
-}
+

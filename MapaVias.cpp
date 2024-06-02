@@ -2,7 +2,7 @@
 #include <QGraphicsPathItem>
 #include <QVBoxLayout>
 #include "MapaVias.h"
-#include "Carro.h"
+
 
 #include "Vias.h"
 
@@ -42,10 +42,14 @@ MapaVias::MapaVias(QWidget *parent) : QWidget(parent)
     scene->addItem(new Vias((200+dif)*2, 150+200+dif+(200+dif), 200+dif ,a));
     scene->addItem(new Vias(200*2+dif, 150+dif+(200+dif)*2, 200+dif ,a));
 
-    Carro *c = new Carro();
+    c = new Carro();
     c->setScale(0.2);
+
+    c->setFlag(QGraphicsItem::ItemIsFocusable);
     c->setFocus();
     scene->addItem(c);
+    connect(scene, &QGraphicsScene::changed, this, &MapaVias::evaluarColisiones);
+
 
 
 }
@@ -54,6 +58,22 @@ MapaVias::MapaVias(QWidget *parent) : QWidget(parent)
 MapaVias::~MapaVias()
 {
     // No es necesario eliminar view y scene manualmente ya que Qt se encarga de esto
+}
+
+void MapaVias::evaluarColisiones()
+{
+    QList<QGraphicsItem *> items = scene->items();
+    for (QGraphicsItem *item : items) {
+        if (Carro *carro = dynamic_cast<Carro *>(item)) {
+            QList<QGraphicsItem *> colisiones = carro->collidingItems();
+            if (!colisiones.isEmpty()) {
+                // Si hay colisiones, se puede manejar aquí
+                qDebug() << "¡Colisión detectada!";
+                c->setPos(0,140);
+                // Manejar la colisión según sea necesario
+            }
+        }
+    }
 }
 
 

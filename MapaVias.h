@@ -6,6 +6,7 @@
 #include <QGraphicsView>
 #include <QGraphicsScene>
 #include <QGraphicsLineItem>
+#include "Carro.h"
 
 class MapaVias : public QWidget
 {
@@ -14,6 +15,7 @@ class MapaVias : public QWidget
 public:
     MapaVias(QWidget *parent = nullptr);
     ~MapaVias();
+    Carro *c;
 
 
 private:
@@ -21,7 +23,7 @@ private:
     void dibujarDiagonal(const QPoint &inicio, const QPoint &fin);
     void dibujarCurva(const QPoint &centro, int radio, int anguloInicio, int anguloFinal);
     void dibujarCurvaCompleja(const QPoint &p1, const QPoint &p2, const QPoint &p3, const QPoint &p4);
-
+    void evaluarColisiones();
     QGraphicsView *view;
     QGraphicsScene *scene;
 };
