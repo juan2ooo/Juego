@@ -2,6 +2,7 @@
 #include <QGraphicsPathItem>
 #include <QVBoxLayout>
 #include "MapaVias.h"
+#include "Proyectil.h"
 
 
 #include "Vias.h"
@@ -25,7 +26,7 @@ MapaVias::MapaVias(QWidget *parent) : QWidget(parent)
     //short dif = 40;
     //double x = ancho / 2;
     //primera via
-    double dif = 50;
+    double dif = 70;
     double a = 5;
     scene->addItem(new Vias(0, 150, 200+dif,a));
     scene->addItem(new Vias(0, 150+dif, 200,a));
@@ -50,8 +51,8 @@ MapaVias::MapaVias(QWidget *parent) : QWidget(parent)
     scene->addItem(c);
     connect(scene, &QGraphicsScene::changed, this, &MapaVias::evaluarColisiones);
 
-
-
+    Proyectil *p = new Proyectil(0,300,100,40,scene);
+    scene ->addItem(p);
 }
 
 

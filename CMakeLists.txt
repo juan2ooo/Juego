@@ -30,6 +30,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MapaVias.h MapaVias.cpp
         Carro.h Carro.cpp
         Vias.h Vias.cpp
+        Proyectil.h Proyectil.cpp
 
     )
 # Define target properties for Android with Qt 6 as:
