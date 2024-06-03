@@ -31,6 +31,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         Carro.h Carro.cpp
         Vias.h Vias.cpp
         Proyectil.h Proyectil.cpp
+        Avion.h Avion.cpp
 
     )
 # Define target properties for Android with Qt 6 as:

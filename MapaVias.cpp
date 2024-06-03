@@ -3,7 +3,7 @@
 #include <QVBoxLayout>
 #include "MapaVias.h"
 #include "Proyectil.h"
-
+#include "Avion.h"
 
 #include "Vias.h"
 
@@ -53,6 +53,10 @@ MapaVias::MapaVias(QWidget *parent) : QWidget(parent)
 
     Proyectil *p = new Proyectil(0,300,100,40,scene);
     scene ->addItem(p);
+    Avion *v = new Avion();
+    v->setScale(0.2);
+    scene->addItem(v);
+
 }
 
 
@@ -69,7 +73,7 @@ void MapaVias::evaluarColisiones()
             QList<QGraphicsItem *> colisiones = carro->collidingItems();
             if (!colisiones.isEmpty()) {
                 // Si hay colisiones, se puede manejar aquí
-                qDebug() << "¡Colisión detectada!";
+                //qDebug() << "¡Colisión detectada!";
                 c->setPos(0,140);
                 // Manejar la colisión según sea necesario
             }
