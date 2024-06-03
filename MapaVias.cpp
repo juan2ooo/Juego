@@ -4,7 +4,7 @@
 #include "MapaVias.h"
 #include "Proyectil.h"
 #include "Avion.h"
-
+#include "Contador.h"
 #include "Vias.h"
 
 MapaVias::MapaVias(QWidget *parent) : QWidget(parent)
@@ -26,6 +26,10 @@ MapaVias::MapaVias(QWidget *parent) : QWidget(parent)
     //short dif = 40;
     //double x = ancho / 2;
     //primera via
+
+    QPixmap fondo("C:/Users/juan/Documents/JuegoProyecto/Imagenes/FondoMapa1.png");
+    scene->setBackgroundBrush(QBrush(fondo));
+
     double dif = 70;
     double a = 5;
     scene->addItem(new Vias(0, 150, 200+dif,a));
@@ -54,8 +58,12 @@ MapaVias::MapaVias(QWidget *parent) : QWidget(parent)
     Proyectil *p = new Proyectil(0,300,100,40,scene);
     scene ->addItem(p);
     Avion *v = new Avion();
-    v->setScale(0.2);
+    v->setScale(0.3);
     scene->addItem(v);
+    vidas = new Contador();
+    vidas->setScale(0.2);
+    scene->addItem(vidas);
+
 
 }
 
@@ -75,7 +83,7 @@ void MapaVias::evaluarColisiones()
                 // Si hay colisiones, se puede manejar aquí
                 //qDebug() << "¡Colisión detectada!";
                 c->setPos(0,140);
-                // Manejar la colisión según sea necesario
+                vidas->perderVida();
             }
         }
     }

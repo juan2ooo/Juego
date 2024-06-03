@@ -7,6 +7,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsLineItem>
 #include "Carro.h"
+#include "Contador.h"
 
 class MapaVias : public QWidget
 {
@@ -26,6 +27,7 @@ private:
     void evaluarColisiones();
     QGraphicsView *view;
     QGraphicsScene *scene;
+    Contador *vidas;
 };
 
 #endif // MAPAVIAS_H

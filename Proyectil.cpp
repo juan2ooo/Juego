@@ -14,7 +14,7 @@ Proyectil::Proyectil(qreal x, qreal y, qreal velocidadInicial, qreal angulo, QGr
     : xInicial(x), yInicial(y), velocidadInicial(velocidadInicial), angulo(angulo), tiempo(0), scene(scene)
 {
     connect(&timer, SIGNAL(timeout()), this, SLOT(actualizarPosicion()));
-    connect(&n,SIGNAL(nuevo()),this,SLOT(nuevoProyectil()));
+    //connect(&n,SIGNAL(nuevo()),this,SLOT(nuevoProyectil()));
     timer.start(100); // Actualizar cada 100 milisegundos
     img = new QPixmap();
     img->load("C:/Users/juan/Documents/JuegoProyecto/Imagenes/proyectil.png");
@@ -49,6 +49,8 @@ void Proyectil::actualizarPosicion()
     //qDebug() << pos().x() << " " << scene->width();
     if (pos().y() > scene->height() || pos().x() > scene ->width()) {
         scene->addItem(new Proyectil(xInicial, yInicial,velocidadInicial,angulo,scene));;
+        timer.stop();
+        n.stop();
         delete this;
     }
 }

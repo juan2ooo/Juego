@@ -32,7 +32,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         Vias.h Vias.cpp
         Proyectil.h Proyectil.cpp
         Avion.h Avion.cpp
-
+        Contador.h Contador.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET JuegoProyecto APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
