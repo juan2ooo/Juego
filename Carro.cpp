@@ -2,11 +2,12 @@
 //#include <cmath>
 
 #include "Carro.h"
+#include "qgraphicsscene.h"
 
 #include <QTimer>
 
-Carro::Carro(QGraphicsItem *parent) : QGraphicsPixmapItem(parent) {
-    //setRotation(90);
+Carro::Carro(QGraphicsScene *parent) {
+    this->scene = parent;
     setPixmap(QPixmap("C:/Users/juan/Documents/JuegoProyecto/Imagenes/Carro.png")); // Reemplaza "car.png" con la ruta de tu imagen de carro
     setTransformOriginPoint(pixmap().width() / 2, pixmap().height() / 2);
     rotationTimer = new QTimer(this);
@@ -57,6 +58,11 @@ void Carro::move() {
 
     // Aplica el desplazamiento al carro
     setPos(x() + dx, y() + dy);
+
+
+    if(x() > scene -> width()){
+        qDebug() << "gano";
+    }
 }
 
 

@@ -16,7 +16,7 @@ Avion::Avion(QGraphicsItem *parent) : QGraphicsPixmapItem(parent), angulo(0), ra
 
 void Avion::mover() {
     angulo += 0.1;
-    radio = 15;
+    radio = 10;
 
     double x1 = radio * std::cos(angulo);
     double y1 = radio * std::sin(angulo);

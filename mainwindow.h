@@ -4,7 +4,7 @@
 #include <QMainWindow>
 //#include "Login.h"
 #include <map>
-#include "Bando.h"
+
 
 using namespace std;
 
@@ -36,7 +36,7 @@ private:
     void mostrarPrincipal();
     void mostrarLogin();
     void EsconderLogin();
-    map<string,string> cuentas;
+    map<string,string> datos;
     map<string, string> *leerDatosDesdeArchivo(const string& nombreArchivo);
     void mostrarDatos(const map<string, string> &datos);
     map<string, string>::iterator verificarCredenciales(const string& usuario, const string& contrasena);

@@ -9,11 +9,12 @@ class Carro : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    Carro(QGraphicsItem *parent = nullptr);
+    Carro(QGraphicsScene *parent = nullptr);
 
 protected:
     void keyPressEvent(QKeyEvent *event) override;
     void keyReleaseEvent(QKeyEvent *event)override;
+    QGraphicsScene *scene;
 
 private:
     bool verificarColisiones();

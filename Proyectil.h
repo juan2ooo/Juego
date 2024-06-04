@@ -1,10 +1,11 @@
 #ifndef PROYECTIL_H
 #define PROYECTIL_H
 
+#include "ProyectilGenerico.h"
 #include <QGraphicsItem>
 #include <QTimer>
 
-class Proyectil : public QObject, public QGraphicsItem
+class Proyectil : public QObject, public QGraphicsItem, public ProyectilGenerico
 {
     Q_OBJECT
 public:
@@ -16,7 +17,7 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;
 
 public slots:
-    void actualizarPosicion();
+    void actualizarPosicion() override;
 
 private:
     qreal xInicial;

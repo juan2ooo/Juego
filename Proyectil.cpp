@@ -48,7 +48,9 @@ void Proyectil::actualizarPosicion()
     tiempo += 0.2;
     //qDebug() << pos().x() << " " << scene->width();
     if (pos().y() > scene->height() || pos().x() > scene ->width()) {
-        scene->addItem(new Proyectil(xInicial, yInicial,velocidadInicial,angulo,scene));;
+        Proyectil *p = new Proyectil(xInicial, yInicial,velocidadInicial,angulo,scene);
+        p->setScale(0.3);
+        scene->addItem(p);;
         timer.stop();
         n.stop();
         delete this;

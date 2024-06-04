@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include "MapaVias.h"
 #include <QGraphicsScene>
 #include <fstream>
 #include <QMessageBox>
@@ -20,16 +21,16 @@ MainWindow::MainWindow(QWidget *parent)
     //funcion para cargar la pantalla principla
     mostrarPrincipal();
 
-    map<string,string> *datos = leerDatosDesdeArchivo("datos.txt");
+    datos = *(leerDatosDesdeArchivo("datos.txt"));
 
     //connect(ui->)
-    mostrarDatos(*datos);
+    mostrarDatos(datos);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-    delete &cuentas;
+    delete &datos;
 }
 
 
@@ -98,7 +99,7 @@ void MainWindow::on_create_clicked()
 
 
         // Escribir el nombre de usuario y la contraseña en el archivo
-        cuentas[(nombreUsuario.toStdString())] = contrasena.toStdString();
+        (datos)[(nombreUsuario.toStdString())] = contrasena.toStdString();
         //string s = nombreUsuario.toStdString() + "," + contrasena.toStdString() + "\n";
         archivo << nombreUsuario.toStdString() << "," << contrasena.toStdString() << "\n";
         // Cerrar el archivo automáticamente al salir del alcance
@@ -119,11 +120,13 @@ void MainWindow::on_login_clicked()
 {
     string usr = ui->lineEditUser->text().toStdString();
     string pass = ui->lineEditPass->text().toStdString();
-    map<string, string>::iterator it = verificarCredenciales(usr,pass);
+    map<string, string>::iterator it = (datos).find(usr);
+    //qDebug() << it->first << " " << it->second;
 
-    if(it == cuentas.end()){
-        Bando bando(this);
-        bando.exec();
+    if(!(it == datos.end()) ){
+        this->close();
+        MapaVias *ma = new MapaVias();
+        ma->show();
     }else{
         QMessageBox::critical(this, "Error", "Usuario o contrasena invalidos.");
     }
@@ -169,9 +172,10 @@ void MainWindow::mostrarDatos(const std::map<string, string> &datos) {
 
 map<string, string>::iterator MainWindow::verificarCredenciales(const string& usuario, const string& contrasena) {
 
-    map<string, string>::iterator it = cuentas.find(usuario);
-    if (it == cuentas.end()) {
-        return cuentas.end();
+    map<string, string>::iterator it = datos.find(usuario);
+
+    if (it == datos.end()) {
+        return datos.end();
     }
     return it;
 }
@@ -179,8 +183,8 @@ map<string, string>::iterator MainWindow::verificarCredenciales(const string& us
 
 bool MainWindow::existe(const string& usuario) {
 
-    map<string, string>::iterator it = cuentas.find(usuario);
-    if (it == cuentas.end()) {
+    map<string, string>::iterator it = datos.find(usuario);
+    if (it == datos.end()) {
         return false;
     }
     return true;

@@ -5,6 +5,7 @@
 #include "Proyectil.h"
 #include "Avion.h"
 #include "Contador.h"
+#include "ProyectilOscilatorio.h"
 #include "Vias.h"
 
 MapaVias::MapaVias(QWidget *parent) : QWidget(parent)
@@ -47,7 +48,7 @@ MapaVias::MapaVias(QWidget *parent) : QWidget(parent)
     scene->addItem(new Vias((200+dif)*2, 150+200+dif+(200+dif), 200+dif ,a));
     scene->addItem(new Vias(200*2+dif, 150+dif+(200+dif)*2, 200+dif ,a));
 
-    c = new Carro();
+    c = new Carro(scene);
     c->setScale(0.2);
 
     c->setFlag(QGraphicsItem::ItemIsFocusable);
@@ -56,6 +57,7 @@ MapaVias::MapaVias(QWidget *parent) : QWidget(parent)
     connect(scene, &QGraphicsScene::changed, this, &MapaVias::evaluarColisiones);
 
     Proyectil *p = new Proyectil(0,300,100,40,scene);
+    p->setScale(0.3);
     scene ->addItem(p);
     Avion *v = new Avion();
     v->setScale(0.3);
@@ -63,6 +65,12 @@ MapaVias::MapaVias(QWidget *parent) : QWidget(parent)
     vidas = new Contador();
     vidas->setScale(0.2);
     scene->addItem(vidas);
+
+    ProyectilOscilatorio *o = new ProyectilOscilatorio();
+    o->setScale(0.2);
+    scene->addItem(o);
+
+    //Proyectil *p1 = new Proyectil(0,300,100,40,scene);
 
 
 }
