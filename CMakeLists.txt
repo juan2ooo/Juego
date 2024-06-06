@@ -33,9 +33,11 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         Proyectil.h Proyectil.cpp
         Avion.h Avion.cpp
         Contador.h Contador.cpp
-        EscenaCarretera.h EscenaCarretera.cpp
+
         ProyectilGenerico.h ProyectilGenerico.cpp
-        ProyectilOscilatorio.h ProyectilOscilatorio.cpp
+        AvionOscilatorio.h AvionOscilatorio.cpp
+        AvionGenerico.h AvionGenerico.cpp
+        Mapa2.h Mapa2.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET JuegoProyecto APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

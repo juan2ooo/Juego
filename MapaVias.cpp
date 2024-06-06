@@ -5,7 +5,7 @@
 #include "Proyectil.h"
 #include "Avion.h"
 #include "Contador.h"
-#include "ProyectilOscilatorio.h"
+#include "AvionOscilatorio.h"
 #include "Vias.h"
 
 MapaVias::MapaVias(QWidget *parent) : QWidget(parent)
@@ -66,9 +66,13 @@ MapaVias::MapaVias(QWidget *parent) : QWidget(parent)
     vidas->setScale(0.2);
     scene->addItem(vidas);
 
-    ProyectilOscilatorio *o = new ProyectilOscilatorio();
+    AvionOscilatorio *o = new AvionOscilatorio();
     o->setScale(0.2);
     scene->addItem(o);
+
+    //ahora vamos a cargar la escena 2
+    QGraphicsScene *scene1 = new QGraphicsScene(this);
+
 
     //Proyectil *p1 = new Proyectil(0,300,100,40,scene);
 
