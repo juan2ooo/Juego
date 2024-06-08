@@ -1,3 +1,4 @@
+#include "Mapa2.h"
 #include "mainwindow.h"
 #include "SignIn.h"
 #include "MapaVias.h"
@@ -11,8 +12,9 @@ int main(int argc, char *argv[])
     //s.show();
     //MapaVias ma;
     //ma.show();
-    MainWindow w;
-    w.show();
-    //qDebug() << "Estilo CSS aplicado a la ventana principal:" << w.styleSheet();
+    //MainWindow w;
+    //w.show();
+    Mapa2 m;
+    m.show();
     return a.exec();
 }

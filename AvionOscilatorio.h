@@ -6,22 +6,28 @@
 #include <QtMath>
 #include "AvionGenerico.h"
 
-class AvionOscilatorio : public QObject, public QGraphicsPixmapItem, public AvionGenerico
+class AvionOscilatorio : public QObject, public QGraphicsItem, public AvionGenerico
 {
     Q_OBJECT
 
 public:
     AvionOscilatorio(QObject *parent = nullptr);
+    QRectF boundingRect()const override;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)override;
 
-public slots:
-    void mover() override;
+
 
 private:
     QTimer *timer;
-    qreal velocidad;
-    qreal amplitud;
-    qreal frecuencia;
-    qreal tiempo;
+    double velocidad;
+    double amplitud;
+    double frecuencia;
+    double tiempo;
+    QPixmap *img;
+
+
+public slots:
+    void mover() override;
 };
 
 #endif // AVIONOSCILATORIO_H

@@ -1,11 +1,12 @@
 #ifndef CUERPO_H
 #define CUERPO_H
 
+#include "CarroGenerico.h"
 #include <QGraphicsPixmapItem>
 #include <QKeyEvent>
 #include <QDebug>
 
-class Carro : public QObject, public QGraphicsPixmapItem
+class Carro : public QObject, public QGraphicsPixmapItem, public CarroGenerico
 {
     Q_OBJECT
 public:
@@ -19,7 +20,7 @@ protected:
 private:
     bool verificarColisiones();
     bool rotating;
-    void rotarCarro();
+    //void mover();
     bool moving;
     QTimer *rotationTimer;
     QTimer *moveTimer;
@@ -27,7 +28,7 @@ private:
 
 private slots:
     void rotate();
-    void move();
+    void move() override;
 };
 
 #endif // CUERPO_H

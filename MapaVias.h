@@ -28,6 +28,7 @@ private:
     QGraphicsView *view;
     QGraphicsScene *scene;
     Contador *vidas;
+
 };
 
 #endif // MAPAVIAS_H

@@ -70,13 +70,6 @@ MapaVias::MapaVias(QWidget *parent) : QWidget(parent)
     o->setScale(0.2);
     scene->addItem(o);
 
-    //ahora vamos a cargar la escena 2
-    QGraphicsScene *scene1 = new QGraphicsScene(this);
-
-
-    //Proyectil *p1 = new Proyectil(0,300,100,40,scene);
-
-
 }
 
 
