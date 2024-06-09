@@ -88,7 +88,7 @@ void MapaVias::evaluarColisiones()
             QList<QGraphicsItem *> colisiones = c->collidingItems();
             if (!colisiones.isEmpty()) {
                 //qDebug() << "¡Colisión detectada!";
-                //c->setPos(0,140);
+                c->setPos(0,140);
                 if(vidas->vidasRestantes < 0){
                     this->close();
                 }
