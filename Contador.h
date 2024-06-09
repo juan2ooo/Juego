@@ -11,12 +11,13 @@ public:
     void reiniciarVidas();
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr) override;
-
-private:
     int vidasRestantes;
-    QPixmap corazon;
+private:
 
+    QPixmap corazon;
     static const int maxVidas = 3;
+
+
     static const int separacion = 10;
 };
 

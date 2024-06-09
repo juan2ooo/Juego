@@ -2,6 +2,7 @@
 //#include <cmath>
 
 #include "Carro.h"
+#include "Mapa2.h"
 #include "qgraphicsscene.h"
 
 #include <QTimer>
@@ -59,9 +60,8 @@ void Carro::move() {
     // Aplica el desplazamiento al carro
     setPos(x() + dx, y() + dy);
 
-
-    if(x() > scene -> width()){
-        qDebug() << "gano";
+    if(x()>scene->width()){
+        emit ganar();
     }
 }
 

@@ -9,12 +9,13 @@
 #include "Carro.h"
 #include "Contador.h"
 
+
 class MapaVias : public QWidget
 {
     Q_OBJECT
 
 public:
-    MapaVias(QWidget *parent = nullptr);
+    MapaVias();
     ~MapaVias();
     Carro *c;
 
@@ -29,6 +30,13 @@ private:
     QGraphicsScene *scene;
     Contador *vidas;
 
+
+public slots:
+    void gano();
+
+
+signals:
+    void sgte();
 };
 
 #endif // MAPAVIAS_H

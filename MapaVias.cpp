@@ -2,14 +2,16 @@
 #include <QGraphicsPathItem>
 #include <QVBoxLayout>
 #include "MapaVias.h"
+#include "Mapa2.h"
 #include "Proyectil.h"
 #include "Avion.h"
 #include "Contador.h"
 #include "AvionOscilatorio.h"
 #include "Vias.h"
 
-MapaVias::MapaVias(QWidget *parent) : QWidget(parent)
+MapaVias::MapaVias()
 {
+
     short alto = 800, ancho = 600;
     scene = new QGraphicsScene(this);
     scene->setSceneRect(0, 0, ancho, alto);
@@ -23,7 +25,6 @@ MapaVias::MapaVias(QWidget *parent) : QWidget(parent)
     layout->addWidget(view);
     setLayout(layout);
 
-    // Agregamos múltiples instancias de Vias a la escena
     //short dif = 40;
     //double x = ancho / 2;
     //primera via
@@ -33,6 +34,7 @@ MapaVias::MapaVias(QWidget *parent) : QWidget(parent)
 
     double dif = 70;
     double a = 5;
+    //Vias v1;
     scene->addItem(new Vias(0, 150, 200+dif,a));
     scene->addItem(new Vias(0, 150+dif, 200,a));
 
@@ -66,32 +68,40 @@ MapaVias::MapaVias(QWidget *parent) : QWidget(parent)
     vidas->setScale(0.2);
     scene->addItem(vidas);
 
-    AvionOscilatorio *o = new AvionOscilatorio();
-    o->setScale(0.2);
-    scene->addItem(o);
+    connect(c, SIGNAL(ganar()), this, SLOT(gano()));
+
+    //AvionOscilatorio *o = new AvionOscilatorio();
+    //o->setScale(0.2);
+    //scene->addItem(o);
 
 }
 
 
 MapaVias::~MapaVias()
 {
-    // No es necesario eliminar view y scene manualmente ya que Qt se encarga de esto
+    delete c;
 }
 
 void MapaVias::evaluarColisiones()
 {
-    QList<QGraphicsItem *> items = scene->items();
-    for (QGraphicsItem *item : items) {
-        if (Carro *carro = dynamic_cast<Carro *>(item)) {
-            QList<QGraphicsItem *> colisiones = carro->collidingItems();
+
+            QList<QGraphicsItem *> colisiones = c->collidingItems();
             if (!colisiones.isEmpty()) {
-                // Si hay colisiones, se puede manejar aquí
                 //qDebug() << "¡Colisión detectada!";
-                c->setPos(0,140);
+                //c->setPos(0,140);
+                if(vidas->vidasRestantes < 0){
+                    this->close();
+                }
+
                 vidas->perderVida();
             }
-        }
-    }
+}
+
+
+void MapaVias::gano(){
+    this->close();
+    disconnect(c, SIGNAL(ganar()), this, SLOT(gano()));
+    emit sgte();
 }
 
 

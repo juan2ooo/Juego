@@ -6,7 +6,7 @@ Contador::Contador() {
 }
 
 void Contador::perderVida() {
-    if (vidasRestantes > 0) {
+    if (vidasRestantes > -1) {
         vidasRestantes--;
         update();
     }

@@ -29,6 +29,10 @@ private:
 private slots:
     void rotate();
     void move() override;
+
+signals:
+    void ganar();
+
 };
 
 #endif // CUERPO_H

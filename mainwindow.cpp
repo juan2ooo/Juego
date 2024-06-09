@@ -21,6 +21,15 @@ MainWindow::MainWindow(QWidget *parent)
     //funcion para cargar la pantalla principla
     mostrarPrincipal();
 
+
+    lv1 = new MapaVias();
+    //lv1->show();
+
+    lv2 = new Mapa2();
+
+    connect(lv1,SIGNAL(sgte()),this, SLOT(Mostrarlv2()));
+    connect(lv2,SIGNAL(terminado()),this, SLOT(MostrarP()));
+
     datos = *(leerDatosDesdeArchivo("datos.txt"));
 
     //connect(ui->)
@@ -102,9 +111,7 @@ void MainWindow::on_create_clicked()
         (datos)[(nombreUsuario.toStdString())] = contrasena.toStdString();
         //string s = nombreUsuario.toStdString() + "," + contrasena.toStdString() + "\n";
         archivo << nombreUsuario.toStdString() << "," << contrasena.toStdString() << "\n";
-        // Cerrar el archivo automáticamente al salir del alcance
-        // No es necesario llamar a archivo.close()
-        // Mostrar ventana de confirmación
+
         QMessageBox::information(this, "Confirmación", "Usuario creado correctamente.");
         ui ->lineEditUser->clear();
         ui ->lineEditPass ->clear();
@@ -125,8 +132,7 @@ void MainWindow::on_login_clicked()
 
     if(!(it == datos.end()) ){
         this->close();
-        MapaVias *ma = new MapaVias();
-        ma->show();
+        lv1->show();
     }else{
         QMessageBox::critical(this, "Error", "Usuario o contrasena invalidos.");
     }
@@ -191,4 +197,17 @@ bool MainWindow::existe(const string& usuario) {
 }
 
 
+void MainWindow::volver(){
+    this->show();
+}
 
+
+void MainWindow::Mostrarlv2(){
+    lv2->show();
+    disconnect(lv1,SIGNAL(sgte()),this, SLOT(Mostrarlv2()));
+}
+
+
+void MainWindow::mostrarP(){
+    this->show();
+}
