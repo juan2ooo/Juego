@@ -21,6 +21,11 @@ void AvionOscilatorio::mover()
     double x1 = velocidad * tiempo;
     double y1 = amplitud * qSin(frecuencia * tiempo);
     setPos(x1, y1 + 200); // Ajusta la posición relativa
+
+    if (x1 > 600){
+        setPos(0,200);
+        tiempo = 0;
+    }
     //qDebug()<<x1<<" "<<y1;
     //update(); // Asegura que el gráfico se actualice
 }
